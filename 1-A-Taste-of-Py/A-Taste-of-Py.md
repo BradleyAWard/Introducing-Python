@@ -48,5 +48,5 @@ print(stooge, "says:", quotes[stooge])
 ```
 
 ```output
->>> stooge = "Curly"
+Curly says: Nyuk, nyuk!
 ```
