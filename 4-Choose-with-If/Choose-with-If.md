@@ -44,4 +44,52 @@ else:
 The vegetable is yellow
 ```
 
-Here we used `==` to test for equality. Python's comparison operators are: equality `==`, inequality `!=`, less than `<`, greater than `>`, less than or equal `<=` and greater than or equal `>=`. If you need to make multiple comparisons at the same time you use the logical operators `and`, `or` and `not`.
+Here we used `==` to test for equality. Python's comparison operators are: equality `==`, inequality `!=`, less than `<`, greater than `>`, less than or equal `<=` and greater than or equal `>=`. If you need to make multiple comparisons at the same time you use the logical operators `and`, `or` and `not`. Logical operators have lower precedence than the code that they are comparing. This means that sections of code will be calculated and then compared. 
+
+Suppose we want to check whether a letter is a vowel. This requires checking against five possibilities which would make our if statement long. Instead, we can use the membership operator `in` to check:
+
+```python
+# Code 3
+# Using in for multiple comparisons
+vowels = 'aeiou'
+letter = 'o'
+letter in vowels
+```
+
+```output
+True
+```
+
+Note that when using a dictionary, the `in` operator checks the keys of the dictionary:
+
+```python
+# Code 4
+# Using in for a dictionary
+vowel_dict = {'a': 'alpha', 'e': 'echo', 'i': 'india', 'o': 'oscar', 'u': 'uniform'}
+letter = 'o'
+letter in vowel_dict
+```
+
+```output
+True
+```
+
+As of Python 3.8, we can use the walrus operator which takes the form `name := expression`. With this operator we can combine assignment and test tasks into a single line:
+
+```python
+# Code 5
+# Using the walrus operator
+temperature_1 = 30
+temperature_2 = 50
+
+if diff := abs(temperature_2 - temperature_1) >= 10:
+    print("The two temperatures are very different.")
+else:
+    print("The two temperatures are close enough.")
+```
+
+```output
+The two temperatures are very different.
+```
+
+This operator works equally well with `for` and `while`.
