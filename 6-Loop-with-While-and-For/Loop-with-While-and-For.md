@@ -1,4 +1,4 @@
-## 5) Loop with While and For
+## 6) Loop with While and For
 
 Testing with `if`, `elif` and `else` runs from top to bottom. Often, we need to do something more than once, requiring a loop. Python gives us two options for generating loops: `while` and `for`.
 

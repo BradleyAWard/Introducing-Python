@@ -1,4 +1,4 @@
-## 6) Tuples and Lists
+## 7) Tuples and Lists
 
 We have already looked at strings which are sequences of characters. Python has two other sequence structures: tuples and lists. These contain zero or more elements. Unlike strings, the elements can be any Python object. Tuples are immutable; when you assign elements (only once), to a tuple, they cannot be changed. Lists are mutable, meaning you can insert and delete elements at will.
 
