@@ -108,4 +108,138 @@ C
 
 As with lists there are also dictionary comprehension which take the form:
 
-{key_expression: value_expression for expression in iterable}
+`{key_expression: value_expression for expression in iterable}`
+
+Dictionary comprehensions can also include conditional statements of the form:
+
+`{key_expression: value_expression for expression in iterable if condition}`
+
+```python
+# Code 6
+# Example dictionary comprehension
+vowels = 'aeiou'
+word = 'onomatopoeia'
+
+letter_counts = {letter: word.count(letter) for letter in word}
+print(letter_counts)
+
+vowel_counts = {letter: word.count(letter) for letter in word if letter in vowels}
+print(vowel_counts)
+```
+
+```output
+{'o': 4, 'n': 1, 'm': 1, 'a': 2, 't': 1, 'p': 1, 'e': 1, 'i': 1}
+{'o': 4, 'a': 2, 'e': 1, 'i': 1}
+```
+
+---
+
+### Sets
+
+A set is like a dictionary without its values, leaving only the keys. As with a dictionary, each key must be unique. You use a set when you only want to know that something exists and nothing else about it. To create a set we use the `set()` function or enclose one or more comma separated values in urly brackets. Note however that `{}` does not create an empty set but an empty dictionary.
+
+```python
+# Code 7
+# Defining a set
+set('letters')
+```
+
+```output
+{'t', 'l', 's', 'r', 'e'}
+```
+
+Note how the set records just one item despite the letters *t* and *e* appearing twice. We can get the length of the set with `len()`, add an item with `add()` and delete an item with `remove()`. A common use for a set is to define a dictionary where the values are the sets. Consider the following dictionary of drinks and their ingredients. We can use this to find what drinks contain particular ingredients.
+
+```python
+# Code 8
+# Example dictionary with sets as values
+drinks = {
+    'martini': {'vodka', 'vermouth'},
+    'black russian': {'vodka', 'kahlua'},
+    'white russian': {'cream', 'kahlua', 'vodka'},
+    'manhattan': {'rye', 'vermouth', 'bitters'},
+    'screwdriver': {'orange juice', 'vodka'}
+}
+
+# Find keys in dictionary based on their set
+for name, contents in drinks.items():
+    if 'vodka' in contents:
+        print(name)
+```
+
+```output
+martini
+black russian
+white russian
+screwdriver
+```
+
+If we wish to check for combinations of set values we use the set intersection operator `&`. Suppose we want to find any drink that has orange juice or vermouth:
+
+```python
+# Code 9
+# Find keys in dictionary based on combinations of set values
+for name, contents in drinks.items():
+    if contents & {'vermouth', 'orange juice'}:
+        print(name)
+```
+
+```output
+martini
+manhattan
+screwdriver
+```
+
+The following are examples of more set operators. Some have special punctuation, some have special functions, and some have both. The intersection (members common to both sets) are prescribed with `&` and the union (members of either set) are found by using `|`. The difference (members of the first set but not the second) is obtained using the character `-`. and the exclusive or (items in one set or the other, but not both) uses `^`.
+
+```python
+# Code 10
+# Define two different sets
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+# In both A and B
+a & b
+
+# A or B
+a|b
+
+# In A but not in B
+a - b
+
+# In A or B but not both
+a ^ b
+```
+
+```output
+{2, 3}
+{1, 2, 3, 4}
+{1}
+{1, 4}
+```
+
+#### Set Comprehension
+
+Set comprehensions can be made using the following form:
+
+`{expression for expression in iterable}`,
+
+and can have an optional conditional of the form:
+
+`{expression for expression in iterable if condition}`
+
+```python
+# Code 11
+# An example set comprehension
+a_set = {number for number in range(1, 6)}
+print(a_set)
+
+# An example set with condition
+b_set = {number for number in range(1, 6) if number % 3 == 1}
+print(b_set)
+```
+
+```output
+{1, 2, 3, 4, 5}
+{1, 4}
+```

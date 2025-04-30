@@ -47,3 +47,65 @@ for value in dict1.values():
 # Iterating over items
 for item in dict1.items():
     print(item)
+
+# Code 6
+# Example dictionary comprehension
+vowels = 'aeiou'
+word = 'onomatopoeia'
+
+letter_counts = {letter: word.count(letter) for letter in word}
+print(letter_counts)
+
+vowel_counts = {letter: word.count(letter) for letter in word if letter in vowels}
+print(vowel_counts)
+
+# Code 7
+# Defining a set
+set('letters')
+
+# Code 8
+# Example dictionary with sets as values
+drinks = {
+    'martini': {'vodka', 'vermouth'},
+    'black russian': {'vodka', 'kahlua'},
+    'white russian': {'cream', 'kahlua', 'vodka'},
+    'manhattan': {'rye', 'vermouth', 'bitters'},
+    'screwdriver': {'orange juice', 'vodka'}
+}
+
+# Find keys in dictionary based on their set
+for name, contents in drinks.items():
+    if 'vodka' in contents:
+        print(name)
+
+# Code 9
+# Find keys in dictionary based on combinations of set values
+for name, contents in drinks.items():
+    if contents & {'vermouth', 'orange juice'}:
+        print(name)
+
+# Code 10
+# Define two different sets
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+# In both A and B
+a & b
+
+# A or B
+a|b
+
+# In A but not in B
+a - b
+
+# In A or B but not both
+a ^ b
+
+# Code 11
+# An example set comprehension
+a_set = {number for number in range(1, 6)}
+print(a_set)
+
+# An example set with condition
+b_set = {number for number in range(1, 6) if number % 3 == 1}
+print(b_set)
