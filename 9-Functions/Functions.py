@@ -79,3 +79,32 @@ def addition(a, b):
 
 # Running the decorated function
 addition(3, 4)
+
+# Code 8 
+# Handling an error with try and except
+num_list = [1, 2, 3, 4, 5]
+position = 7
+
+try:
+    num_list[position]
+except:
+    print("Requires a position between 0 and", len(num_list)-1, "but received", position)
+
+# Code 9
+# An example using a named error
+try:
+    num_list[position]
+except IndexError as err:
+    print("Bad index:", position)
+
+# Code 10
+# Defining a new exception class
+class UppercaseException(Exception):
+    pass
+
+# Raising our newly defined exception
+words = ['one', 'two', 'three', 'FOUR']
+
+for word in words:
+    if word.isupper():
+        raise UppercaseException(word)

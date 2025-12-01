@@ -202,3 +202,60 @@ If we decorate a function with more than one decorator, we start with the one cl
 ### Exceptions
 
 When things go wrong, Python uses exceptions: code that is executed when an associated error occurs. When you run code that might fail under some circumstances, you also need appropriate exception handlers to intercept any potential errors. It is good practice to add exception handling anywhere an exception might occur to let the user know what is happening. If you do not provide your own exception handler, Python prints an error message and some information about where the error occurred and then terminates the program. We can use `try` to wrap our code and `except` to provide the error handling.
+
+```python
+# Code 8 
+# Handling an error with try and except
+num_list = [1, 2, 3, 4, 5]
+position = 7
+
+try:
+    num_list[position]
+except:
+    print("Requires a position between 0 and", len(num_list)-1, "but received", position)
+```
+
+```output
+Requires a position between 0 and 4 but received 7
+```
+
+Specifying a plain except with no arguments is a catch all for any exception type. If more than one type of exception could occur, it is best to provide a separate exception handler for each. Sometimes we want exception details beyond the type. You get full exception object in the variable name if you use the form:
+
+`except exceptiontype as name:`
+
+Below is an example of a named error.
+
+```python
+# Code 9
+# An example using a named error
+try:
+    num_list[position]
+except IndexError as err:
+    print("Bad index:", position)
+```
+
+```output
+Bad index: 7
+```
+
+You can also define your own exception types to handle special situations that might arise in your own program. An exception is a class that is the child of the class Exception. Let us make an exception called `UppercaseException` and raise it when we encounter an uppercase word in a string.
+
+```python
+# Code 10
+# Defining a new exception class
+class UppercaseException(Exception):
+    pass
+
+# Raising our newly defined exception
+words = ['one', 'two', 'three', 'FOUR']
+
+for word in words:
+    if word.isupper():
+        raise UppercaseException(word)
+```
+
+```output
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+UppercaseException: FOUR
+```
