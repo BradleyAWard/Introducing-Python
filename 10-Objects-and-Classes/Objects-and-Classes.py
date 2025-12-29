@@ -16,3 +16,14 @@ class Cat():
 
 # An example cat
 cat_b = Cat("Grumpy")
+
+# Code 3
+# An animal superclass and cat subclas
+class Animal():
+    pass
+
+class Cat(Animal):
+    pass
+
+# Check that cat is a subclass of animal
+issubclass(Cat, Animal)
