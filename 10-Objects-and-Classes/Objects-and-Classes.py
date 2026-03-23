@@ -51,3 +51,42 @@ class EmailPerson(Person):
     def __init__(self, name, email):
         super().__init__(name)
         self.email = email
+
+# Code 6
+# Parent class - Animal
+class Animal():
+    def intro(self):
+        return "I am an animal"
+    
+# Child class - Horse
+class Horse(Animal):
+    def intro(self):
+        return "Neigh"
+    
+# Child class - Donkey
+class Donkey(Animal):
+    def intro(self):
+        return "Hee-haw"
+    
+# Derived class - Mule (Father Donkey, Mother Horse)
+class Mule(Donkey, Horse):
+    pass
+
+# Derived class - Hinny (Father Horse, Mother Donkey)
+class Hinny(Horse, Donkey):
+    pass
+
+# Code 7
+# Mule mro
+Mule.mro()
+
+# Hinny mro
+Hinny.mro()
+
+# What a mule says
+mule = Mule()
+mule.intro()
+
+# What a hinny says
+hinny = Hinny()
+hinny.intro()

@@ -93,3 +93,59 @@ class EmailPerson(Person):
 ```
 
 By defining an `init()` method for the subclass, we are replacing the `init()` method of its parent class. We could have defined our new class with `self.name = name`, but that would have defeated our use of inheritance. We used `super()` to make `Person()` do its work, the same as a plain Person object would. The other benefit is that if the definition of Person changes in the future, using `super()` will ensure that the attributes and methods that EmailPerson inherits from Person will reflect the change.
+
+#### Multiple Inheritance
+
+Objects can inherit from multiple classes. If your class refers to a method or attribute it does not have, Python will look in all the parents. If more than one of them has something with the same name, inheritance depends on the method resolution order. Each Python class has a special method called `mro()` that returns a list of the classes that would be visited to find a method or attribute for an object of that class. Consider the following class, its two child classes and the two classes derived from these.
+
+```python
+# Code 6
+# Parent class - Animal
+class Animal():
+    def intro(self):
+        return "I am an animal"
+    
+# Child class - Horse
+class Horse(Animal):
+    def intro(self):
+        return "Neigh"
+    
+# Child class - Donkey
+class Donkey(Animal):
+    def intro(self):
+        return "Hee-haw"
+    
+# Derived class - Mule (Father Donkey, Mother Horse)
+class Mule(Donkey, Horse):
+    pass
+
+# Derived class - Hinny (Father Horse, Mother Donkey)
+class Hinny(Horse, Donkey):
+    pass
+```
+
+Assuming that a child speaks like its father, we can use `mro` to see the order the classes are searched and call their `intro()` method to see what they say:
+
+```python
+# Code 7
+# Mule mro
+Mule.mro()
+
+# Hinny mro
+Hinny.mro()
+
+# What a mule says
+mule = Mule()
+mule.intro()
+
+# What a hinny says
+hinny = Hinny()
+hinny.intro()
+```
+
+```output
+[<class '__main__.Mule'>, <class '__main__.Donkey'>, <class '__main__.Horse'>, <class '__main__.Animal'>, <class 'object'>]
+[<class '__main__.Hinny'>, <class '__main__.Horse'>, <class '__main__.Donkey'>, <class '__main__.Animal'>, <class 'object'>]
+'Hee-haw'
+'Neigh'
+```
