@@ -90,3 +90,55 @@ mule.intro()
 # What a hinny says
 hinny = Hinny()
 hinny.intro()
+
+# Code 8
+# Class with a getter and setter for name
+class Person():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+
+    def get_name(self):
+        print('Inside getter')
+        return self.hidden_name
+    
+    def set_name(self, input_name):
+        print('Inside setter')
+        self.hidden_name = input_name
+
+# Using the getter
+bradley = Person('Bradley')
+bradley.get_name()
+
+# Using the setter
+bradley.set_name('Bradley Ward')
+bradley.get_name()
+
+# Code 9
+# Class with a property for private attributes
+class Person():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+
+    @property
+    def name(self):
+        print('Inside getter')
+        return self.hidden_name
+    
+    @name.setter
+    def set_name(self, input_name):
+        print('Inside setter')
+        self.hidden_name = input_name
+
+# Code 10
+# A computed value set as a property
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def diameter(self):
+        return 2*self.radius
+
+# Using our new attribute
+c = Circle(5)
+c.diameter

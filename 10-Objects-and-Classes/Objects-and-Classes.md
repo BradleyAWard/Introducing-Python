@@ -149,3 +149,111 @@ hinny.intro()
 'Hee-haw'
 'Neigh'
 ```
+
+---
+
+### Attribute access
+
+Some object-oriented languages support private object attributes that can not be accessed directly from the outside. Python does not have private attributes but you can write *getters* and *setters* with obfuscated attribute names for privacy (the best solution is to use *properties*). Below is an example showing a name attribute with a setter and getter.
+
+```python
+# Code 8
+# Class with a getter and setter for name
+class Person():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+
+    def get_name(self):
+        print('Inside getter')
+        return self.hidden_name
+    
+    def set_name(self, input_name):
+        print('Inside setter')
+        self.hidden_name = input_name
+```
+
+```python
+# Using the getter
+bradley = Person('Bradley')
+bradley.get_name()
+```
+
+```output
+Inside getter
+'Bradley'
+```
+
+```python
+# Using the setter
+bradley.set_name('Bradley Ward')
+bradley.get_name()
+```
+
+```output
+Inside setter
+Inside getter
+'Bradley Ward'
+```
+
+The Pythonic solution for attribute privacy is to use properties. There are two ways to do this, first is to add `name = property(get_name, set_name)` as the final line of the class definition, or you add some decorators:
+
+`@property` goes before the getter method
+
+`@name.setter` goes before the setter method.
+
+```python
+# Code 9
+# Class with a property for private attributes
+class Person():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+
+    @property
+    def name(self):
+        print('Inside getter')
+        return self.hidden_name
+    
+    @name.setter
+    def set_name(self, input_name):
+        print('Inside setter')
+        self.hidden_name = input_name
+```
+
+A property can also return a computed value. Let us define a Circle class that has a radius attribute and a computed diameter property.
+
+```python
+
+# Code 10
+# A computed value set as a property
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+
+    @property
+    def diameter(self):
+        return 2*self.radius
+
+# Using our new attribute
+c = Circle(5)
+c.diameter
+```
+
+```output
+10
+```
+
+If you do not specify a setter property for an attribute, you can not set it from the outside. This is useful for read-only attributes. In our `Person()` example above, the hidden attribute `hidden_name` was not completely hidden (it could still be called). By beginning an attribute's name with two underscores, the attribute will not be visible outside the class definition.
+
+---
+
+### Method types
+
+Some methods are part of the class itself, some are part of the objects that are created from the class, and some are neither:
+
+- If there is no preceding decorator, it is an *instance method*, and its first argument should be `self` to refer to the individual object itself.
+- If there is a preceding `@classmethod` decorator, it is a *class method*, and its first argument should be `cls`, referring to the class itself.
+- If there is a preceding `@staticmethod` decorator, it is a *static method*, and its first argument is neither an object or a class.
+
+#### Instance methods
+
+When you see an initial `self` argument in methods within a class definition, it is an instance method. These are the types of methods that you would normally write when creating your own classes. The first parameter of an instance method is `self`, and Python passes the object to the method when you call it. These are the ones defined thus far.
