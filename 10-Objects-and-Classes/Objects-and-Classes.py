@@ -27,3 +27,27 @@ class Cat(Animal):
 
 # Check that cat is a subclass of animal
 issubclass(Cat, Animal)
+
+# Code 4
+# A new method to a subclass
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+class Doctor(Person):
+    def __init__(self, name):
+        self.name = "Dr. " + name
+
+    def degree(self):
+        return True
+
+# Define a new person and show that they have a degree
+person_A = Doctor("Bob Smith")
+person_A.name, person_A.degree()
+
+# Code 5
+# Using super()
+class EmailPerson(Person):
+    def __init__(self, name, email):
+        super().__init__(name)
+        self.email = email

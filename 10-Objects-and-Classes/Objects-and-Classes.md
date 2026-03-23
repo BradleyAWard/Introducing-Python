@@ -55,3 +55,41 @@ issubclass(Cat, Animal)
 ```output
 True
 ```
+
+A new class initially inherits everything from its parent class. We can override any methods, including `init()`. Below is an example of us adding a new method to our subclass.
+
+```python
+# Code 4
+# A new method to a subclass
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+class Doctor(Person):
+    def __init__(self, name):
+        self.name = "Dr. " + name
+
+    def degree(self):
+        return True
+
+# Define a new person and show that they have a degree
+person_A = Doctor("Bob Smith")
+person_A.name, person_A.degree()
+```
+
+```output
+('Dr. Bob Smith', True)
+```
+
+Consider we wanted to call a parent method. Here we define a new class EmailPerson that represents a Person that has an email.
+
+```python
+# Code 5
+# Using super()
+class EmailPerson(Person):
+    def __init__(self, name, email):
+        super().__init__(name)
+        self.email = email
+```
+
+By defining an `init()` method for the subclass, we are replacing the `init()` method of its parent class. We could have defined our new class with `self.name = name`, but that would have defeated our use of inheritance. We used `super()` to make `Person()` do its work, the same as a plain Person object would. The other benefit is that if the definition of Person changes in the future, using `super()` will ensure that the attributes and methods that EmailPerson inherits from Person will reflect the change.
