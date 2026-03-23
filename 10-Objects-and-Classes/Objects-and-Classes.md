@@ -257,3 +257,91 @@ Some methods are part of the class itself, some are part of the objects that are
 #### Instance methods
 
 When you see an initial `self` argument in methods within a class definition, it is an instance method. These are the types of methods that you would normally write when creating your own classes. The first parameter of an instance method is `self`, and Python passes the object to the method when you call it. These are the ones defined thus far.
+
+#### Class methods
+
+A class method affects the class as a whole. Any changes to the class affects all of its objects. We decorate a class method with `@classmethod` and the first parameter to the method is the class itself. Here we shall define a class method to count how many object instances have been made from a class.
+
+```python
+# Code 11
+# Defining a class method
+class Person():
+    count = 0
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.count += 1
+
+    @classmethod
+    def counter(cls):
+        print("There are", cls.count, "people")
+
+# Using the class method
+person_a = Person("Bob", 24)
+person_b = Person("Alan", 27)
+person_c = Person("George", 21)
+Person.counter()
+```
+
+```output
+There are 3 people
+```
+
+#### Static methods
+
+A static method affects neither the class nor its objects; it is there for convenience rather than floating by itself. It is preceded by a `@staticmethod` decorator with no initial `self` or `cls` parameter. Below is an example static method.
+
+```python
+# Code 12
+# Defining a static method
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @staticmethod
+    def exclaim():
+        print("I am human")
+
+# Using the static method
+Person.exclaim()
+```
+
+```output
+I am human
+```
+
+---
+
+### Magic methods
+
+We can automatically create certain operators by using Python's *special methods* (or alternatively named *magic methods*). The names of these methods begin and end with double underscores as they are unlikely to have been chosen by programmers as variable names. Suppose we wanted to create an `equals()` method that compares two words but ignores the case. We can used the `eq()` method to compare two different objects.
+
+```python
+# Code 13
+# Defining the __eq__() magic method
+class Word():
+    def __init__(self, text):
+        self.text = text
+
+    def __eq__(self, word2):
+        return self.text.lower() == word2.text.lower()
+    
+# Creating three words
+first_word = Word("Hello")
+second_word = Word("hello")
+third_word = Word("Hi")
+
+# Comparing the three words
+first_word == second_word, second_word == third_word, first_word == third_word
+```
+
+```output
+(True, False, False)
+```
+
+Below lists the most useful magic methods.
+
+| Method | Description |
+| :--- | :--- | :--- |
+| __eq__(self, other) | self == other |

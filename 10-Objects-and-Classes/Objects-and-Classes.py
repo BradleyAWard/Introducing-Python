@@ -142,3 +142,53 @@ class Circle():
 # Using our new attribute
 c = Circle(5)
 c.diameter
+
+# Code 11
+# Defining a class method
+class Person():
+    count = 0
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.count += 1
+
+    @classmethod
+    def counter(cls):
+        print("There are", cls.count, "people")
+
+# Using the class method
+person_a = Person("Bob", 24)
+person_b = Person("Alan", 27)
+person_c = Person("George", 21)
+Person.counter()
+
+# Code 12
+# Defining a static method
+class Person():
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @staticmethod
+    def exclaim():
+        print("I am human")
+
+# Using the static method
+Person.exclaim()
+
+# Code 13
+# Defining the __eq__() magic method
+class Word():
+    def __init__(self, text):
+        self.text = text
+
+    def __eq__(self, word2):
+        return self.text.lower() == word2.text.lower()
+    
+# Creating three words
+first_word = Word("Hello")
+second_word = Word("hello")
+third_word = Word("Hi")
+
+# Comparing the three words
+first_word == second_word, second_word == third_word, first_word == third_word
