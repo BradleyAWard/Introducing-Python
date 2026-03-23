@@ -343,5 +343,43 @@ first_word == second_word, second_word == third_word, first_word == third_word
 Below lists the most useful magic methods.
 
 | Method | Description |
-| :--- | :--- | :--- |
-| __eq__(self, other) | self == other |
+| :--- | :--- |
+| `__eq__(self, other)` | self == other |
+| `__ne__(self, other)` | self != other |
+| `__lt__(self, other)` | self < other |
+| `__gt__(self, other)` | self > other |
+| `__le__(self, other)` | self <= other |
+| `__ge__(self, other)` | self >= other |
+| `__add__(self, other)` | self + other |
+| `__sub__(self, other)` | self - other |
+| `__mul__(self, other)` | self * other |
+| `__floordiv__(self, other)` | self // other |
+| `__truediv__(self, other)` | self / other |
+| `__mod__(self, other)` | self % other |
+| `__pow__(self, other)` | self ** other |
+| `__str__(self)` | str(self) |
+| `__repr__(self)` | repr(self) |
+| `__len__(self)` | len(self) |
+
+Besides `init()`, you may find yourself using `str()` the most in your own methods. It is how you print your object.
+
+---
+
+### Aggregation and composition
+
+Inheritance is a good technique to use when you want a child class to act like its parent class most of the time. It is tempting to build elaborate inheritance hierarchies, but sometimes composition or aggregation make more sense. In composition, one thing is part of another. Aggregation expresses relationships, but is a little looser: one thing uses another, but both exist independently. For example, composition: a duck is a bird (inheritance), but has a tail (composition) and aggregation: a duck uses a lake, but one is not part of the other.
+
+Below are some guidelines for deciding whether to put your code and data in a class, module or something different.
+
+- Objects are most useful when you need a number of individual instance that have similar behaviour (methods), but differ in their internal states (attributes).
+- Classes support inheritance, modules do not.
+- If you want one of something, a module might be best. No matter how many times a Python module is referenced in a program, only one copy is loaded.
+- If you have a number of variables that contain multiple values and can be passed as arguments to multiples functions, it might be better to define them as classes.
+- Use the simplest solution to the problem. A dictionary, list or tuple is simpler, smaller and faster than a module, which is usually simpler than a class.
+- Avoid overengineering datastructures. Tuples are better than objects (try named tuples). Prefer simple fields over getter/setters functions. Use more numbers, strings, tuples, lists, sets and dictionaries.
+- A newer alternative is the dataclass.
+
+---
+
+### Named tuples
+
