@@ -192,3 +192,28 @@ third_word = Word("Hi")
 
 # Comparing the three words
 first_word == second_word, second_word == third_word, first_word == third_word
+
+# Code 14
+from collections import namedtuple
+Person = namedtuple('Person', ['name', 'age'])
+
+# Example named tuple
+bradley = Person('Bradley', 29)
+bradley.name, bradley.age
+
+# Code 15
+# Named tuple from a dictionary
+details = {'name': 'Bradley', 'age': 29}
+bradley = Person(**details)
+bradley.name, bradley.age
+
+# Code 16
+# An example of a dataclass
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+
+# Generating a dataclass
+bradley = Person('Bradley')

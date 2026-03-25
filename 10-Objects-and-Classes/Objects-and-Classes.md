@@ -383,3 +383,60 @@ Below are some guidelines for deciding whether to put your code and data in a cl
 
 ### Named tuples
 
+A named tuple is a subclass of tuples with which you can access values by name (with `.name`) as well as by position (with `[offset]`). We shall show an example that could replace the `Person()` class.
+
+```python
+# Code 14
+from collections import namedtuple
+Person = namedtuple('Person', ['name', 'age'])
+
+# Example named tuple
+bradley = Person('Bradley', 29)
+bradley.name, bradley.age
+```
+
+```output
+('Bradley', 29)
+```
+
+You can also make a named tuple from a dictionary:
+
+```python
+# Code 15
+# Named tuple from a dictionary
+details = {'name': 'Bradley', 'age': 29}
+bradley = Person(**details)
+bradley.name, bradley.age
+```
+
+```output
+('Bradley', 29)
+```
+
+Whereas you can add fields to a dictionary, you can not to a named tuple. Below is a list of the advantages of a named tuple:
+
+- It looks and acts like an immutable object.
+- It is more space and time efficient than objects.
+- You can access attributes by using dot notation instead of dictionary style square brackets.
+- You can use it as a dictionary key.
+
+---
+
+### Dataclasses
+
+Often we like to create objects mainly to store data (as object attributes), rather than predominantly for methods. Python 3.7 introduced dataclasses for this purpose. We can redefine our `Person()` class using a dataclass as follows
+
+```python
+# Code 16
+# An example of a dataclass
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+
+# Generating a dataclass
+bradley = Person('Bradley')
+```
+
+Besides needing a `@dataclass` decorator, you define the class attributes using variable annotations of the form `name: type` or `name: type = val`. The type can be any Python object type, including classes you have created.
