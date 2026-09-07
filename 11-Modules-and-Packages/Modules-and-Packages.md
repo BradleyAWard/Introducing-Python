@@ -100,4 +100,24 @@ periodic_table
 defaultdict(<class 'int'>, {'Lead': 0})
 ```
 
+You can use the functions `int()`, `list()` or `dict()` to return default empty values for those types: `int()` return 0, `list()` returns an empty list and `dict()` returns an empty dictionary. If you omit the argument, the initial value of a new key will be set to `None`.
 
+#### Count items with `counter()`
+
+The standard library has a `counter()` function that can be used in a variety of ways:
+
+```python
+# Code 4
+from collections import Counter
+
+# Define an example list
+breakfast = ['porridge', 'jam', 'cereal', 'porridge', 'porridge', 'muffin', 'jam']
+
+# Creating a counter
+breakfast_counter = Counter(breakfast)
+breakfast_counter
+```
+
+```output
+Counter({'porridge': 3, 'jam': 2, 'cereal': 1, 'muffin': 1})
+```

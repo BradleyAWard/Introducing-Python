@@ -19,3 +19,13 @@ periodic_table['Lead']
 
 # Showing that we have created Lead in our dictionary
 periodic_table
+
+# Code 4
+from collections import Counter
+
+# Define an example list
+breakfast = ['porridge', 'jam', 'cereal', 'porridge', 'porridge', 'muffin', 'jam']
+
+# Creating a counter
+breakfast_counter = Counter(breakfast)
+breakfast_counter
